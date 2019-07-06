@@ -8,6 +8,7 @@ import RecipesEdit from "./views/RecipesEdit.vue";
 Vue.use(Router);
 
 export default new Router({
+  base: "https://obsinqsob01.github.io/recipes-notes/",
   routes: [
     {
       path: "/",
