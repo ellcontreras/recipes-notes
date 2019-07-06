@@ -32,6 +32,16 @@ export default new Vuex.Store({
           recipe.slug !== payload.slug && recipe.id.toString() !== payload.id
         );
       });
+    },
+    ["RECIPE_EDIT"](state, payload) {
+      let recipe_key = 0;
+      state.recipes.forEach((recipe, index) => {
+        if (recipe.id.toString() === payload.id.toString()) {
+          recipe_key = index;
+        }
+      });
+
+      state.recipes[recipe_key] = payload;
     }
   },
   getters: {
@@ -50,6 +60,9 @@ export default new Vuex.Store({
     },
     ["RECIPE_DELETE"]({ commit }, payload) {
       commit("RECIPE_DELETE", payload);
+    },
+    ["RECIPE_EDIT"]({ commit }, payload) {
+      commit("RECIPE_EDIT", payload);
     }
   },
   plugins: [vuexPersist.plugin]
