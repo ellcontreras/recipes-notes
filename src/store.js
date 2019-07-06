@@ -9,7 +9,7 @@ export default new Vuex.Store({
       {
         id: 1,
         title: "My first recipe",
-        description: "Que onda como vas hermano",
+        description: "Hello, this is by default bro",
         ingredients: ["1/4 Cebolla", "Cilantro"],
         process: "you do this and that",
         slug: "my-first-recipe"
@@ -26,6 +26,9 @@ export default new Vuex.Store({
       return state.recipes.find(recipe => {
         return recipe.slug === slug && recipe.id.toString() === id;
       });
+    },
+    recipes: state => {
+      return state.recipes.reverse();
     }
   },
   actions: {
