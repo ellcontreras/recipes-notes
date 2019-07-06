@@ -25,6 +25,13 @@ export default new Vuex.Store({
   mutations: {
     ["RECIPE_SAVE"](state, payload) {
       state.recipes.push(payload);
+    },
+    ["RECIPE_DELETE"](state, payload) {
+      state.recipes = state.recipes.filter(recipe => {
+        return (
+          recipe.slug !== payload.slug && recipe.id.toString() !== payload.id
+        );
+      });
     }
   },
   getters: {
@@ -40,6 +47,9 @@ export default new Vuex.Store({
   actions: {
     ["RECIPE_SAVE"]({ commit }, payload) {
       commit("RECIPE_SAVE", payload);
+    },
+    ["RECIPE_DELETE"]({ commit }, payload) {
+      commit("RECIPE_DELETE", payload);
     }
   },
   plugins: [vuexPersist.plugin]

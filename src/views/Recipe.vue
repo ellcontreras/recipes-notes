@@ -1,5 +1,6 @@
 <template lang="pug">
     div(class="w-2/3").mx-auto
+        p.text-right.p-2.bg-red-600.inline-block.text-white.rounded-lg.my-3.cursor-pointer(@click="deleteRecipe" class="hover:bg-red-700") Eliminar
         h1.text-6xl.text-center {{ recipe.title }}
         p.text-2xl.text-gray-700 {{ recipe.description }}
         hr
@@ -24,6 +25,16 @@ export default {
       this.$route.params.id,
       this.$route.params.slug
     );
+  },
+  methods: {
+    deleteRecipe() {
+      this.$store.dispatch("RECIPE_DELETE", {
+        id: this.$route.params.id,
+        slug: this.$route.params.slug
+      });
+
+      this.$router.push("/");
+    }
   }
 };
 </script>
